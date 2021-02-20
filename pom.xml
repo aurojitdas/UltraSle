@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>UltraSle</groupId>
     <artifactId>UltraSle</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
     <packaging>jar</packaging>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -31,6 +31,14 @@
     	<artifactId>webdrivermanager</artifactId>
     	<version>4.3.1</version>
 	</dependency>
+	
+	<!-- https://mvnrepository.com/artifact/com.aventstack/extentreports -->
+	<dependency>
+  	  <groupId>com.aventstack</groupId>
+  	  <artifactId>extentreports</artifactId>
+   	 <version>5.0.6</version>
+	</dependency>
+	
     
     </dependencies>
     

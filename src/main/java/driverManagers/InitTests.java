@@ -13,6 +13,9 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class InitTests {
@@ -24,14 +27,25 @@ public class InitTests {
 	String browser;
 	String currentDir;
 	String configFilePath;
+	String extentReportPath;
+	public ExtentReports reports;
+	ExtentSparkReporter sparkreporter;
 	public InitTests() {
+		
 		 try {
+			 
 			currentDir = System.getProperty("user.dir");			
 			configFilePath = currentDir +File.separator+"src"+File.separator+"main"+File.separator+"resources"+File.separator+"config"+File.separator+"conf.properties";
 			reader=new FileReader(configFilePath);
 			p=new Properties();  
 			p.load(reader);  
 			browser = p.getProperty("Browser");
+			String reportName= System.getProperty("suiteXmlFile");
+			reportName=reportName.substring(0,reportName.length()-4);
+			extentReportPath = currentDir +File.separator+"src"+File.separator+"Reports"+File.separator+reportName+".html";
+			reports = new ExtentReports();
+			sparkreporter = new ExtentSparkReporter(extentReportPath);
+			reports.attachReporter(sparkreporter);
 			
 		} catch (FileNotFoundException e) {
 			
@@ -41,8 +55,6 @@ public class InitTests {
 			
 			System.out.println("Error loading Config details check the config file.");
 		}  
-	      
-	   
 	}
 	
 	public  WebDriver getWebDriver() {
@@ -75,10 +87,6 @@ public class InitTests {
 		default:
 			break;
 		}
-		
-		
-		
-		
 		return driver;
 	}
 	
