@@ -2,14 +2,14 @@ package test.initialSetup.tests;
 
 import org.openqa.selenium.WebDriver;
 
-import driverManagers.InitDriver;
+import driverManagers.InitTests;
 
 public class testSetup {
 	
 	public static void main(String[] args) {
 		WebDriver driver;
-		InitDriver d = new InitDriver();
-		driver = d.initDriver();
+		InitTests d = new InitTests();
+		driver = d.getWebDriver();
 		driver.get("https:\\google.com");
 		
 	}

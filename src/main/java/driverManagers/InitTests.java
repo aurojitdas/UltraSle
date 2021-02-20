@@ -15,7 +15,7 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class InitDriver {
+public class InitTests {
 
 	
 	WebDriver driver;
@@ -24,7 +24,7 @@ public class InitDriver {
 	String browser;
 	String currentDir;
 	String configFilePath;
-	public InitDriver() {
+	public InitTests() {
 		 try {
 			currentDir = System.getProperty("user.dir");			
 			configFilePath = currentDir +File.separator+"src"+File.separator+"main"+File.separator+"resources"+File.separator+"config"+File.separator+"conf.properties";
@@ -45,7 +45,7 @@ public class InitDriver {
 	   
 	}
 	
-	public  WebDriver initDriver() {
+	public  WebDriver getWebDriver() {
 		
 		switch (browser) {
 		case "CHROME":
