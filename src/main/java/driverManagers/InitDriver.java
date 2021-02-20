@@ -26,7 +26,8 @@ public class InitDriver {
 	String configFilePath;
 	public InitDriver() {
 		 try {
-			currentDir = System.getProperty("user.dir");			
+			currentDir = System.getProperty("user.dir");
+			System.out.println(currentDir); 
 			configFilePath = currentDir +File.separator+"src"+File.separator+"main"+File.separator+"resources"+File.separator+"config"+File.separator+"conf.properties";
 			reader=new FileReader(configFilePath);
 			p=new Properties();  
