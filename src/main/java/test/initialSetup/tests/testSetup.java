@@ -2,7 +2,7 @@ package test.initialSetup.tests;
 
 import org.openqa.selenium.WebDriver;
 
-import driverManagers.InitTests;
+import services.InitTests;
 
 public class testSetup {
 	

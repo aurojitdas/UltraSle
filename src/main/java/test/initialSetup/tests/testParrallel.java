@@ -9,7 +9,7 @@ import com.aventstack.extentreports.Status;
 
 import services.InitTests;
 
-public class TestTestNgSetup extends InitTests {
+public class testParrallel extends InitTests {
 	
 	WebDriver driver;
 	ExtentTest test;
@@ -21,7 +21,7 @@ public class TestTestNgSetup extends InitTests {
 		try {
 			//new TestTestNgSetup();
 			driver = getWebDriver();
-			test = reports.createTest("Testing 001");
+			test = reports.createTest("Testing 003");
 			test.assignCategory("Test Category");
 			driver = getEventFiringWebDriver(test);
 			
@@ -46,14 +46,14 @@ public class TestTestNgSetup extends InitTests {
 		}
 	}
 	
-	@Test(enabled=false)
+	@Test(enabled=true)
 	public void testSetupParrel(){
 		
 		
 		try {
 			//new TestTestNgSetup();
 			driver = getWebDriver();
-			test = reports.createTest("Testing 002");
+			test = reports.createTest("Testing 004");
 			test.assignCategory("Test Category");
 			driver = getEventFiringWebDriver(test);
 			

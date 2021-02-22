@@ -1,4 +1,4 @@
-package driverManagers;
+package services;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -12,8 +12,10 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 
 import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -28,8 +30,10 @@ public class InitTests {
 	String currentDir;
 	String configFilePath;
 	String extentReportPath;
-	public ExtentReports reports;
+	public static ExtentReports reports;
 	ExtentSparkReporter sparkreporter;
+	EventHandlers handler;
+	EventFiringWebDriver edriver;
 	public InitTests() {
 		
 		 try {
@@ -88,6 +92,14 @@ public class InitTests {
 			break;
 		}
 		return driver;
+	}
+	
+	public EventFiringWebDriver getEventFiringWebDriver(ExtentTest test) {
+		edriver = new EventFiringWebDriver(driver);
+		handler = new EventHandlers(test);
+		edriver.register(handler);
+		
+		return edriver;
 	}
 	
 	
