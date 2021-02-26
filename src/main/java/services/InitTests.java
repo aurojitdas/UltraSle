@@ -13,6 +13,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
@@ -30,9 +31,11 @@ public class InitTests {
 	String currentDir;
 	String configFilePath;
 	String extentReportPath;
+	protected static WebDriverWait wait;
 	public static ExtentReports reports;
 	ExtentSparkReporter sparkreporter;
 	EventHandlers handler;
+	int time;
 	EventFiringWebDriver edriver;
 	public InitTests() {
 		
@@ -44,12 +47,17 @@ public class InitTests {
 			p=new Properties();  
 			p.load(reader);  
 			browser = p.getProperty("Browser");
+			
 			String reportName= System.getProperty("suiteXmlFile");
 			reportName=reportName.substring(0,reportName.length()-4);
 			extentReportPath = currentDir +File.separator+"src"+File.separator+"Reports"+File.separator+reportName+".html";
 			reports = new ExtentReports();
 			sparkreporter = new ExtentSparkReporter(extentReportPath);
 			reports.attachReporter(sparkreporter);
+			time = Integer.parseInt(p.getProperty("Timeout"));
+			driver = getWebDriver();
+			wait = new WebDriverWait(driver,time);
+			
 			
 		} catch (FileNotFoundException e) {
 			
@@ -95,6 +103,7 @@ public class InitTests {
 	}
 	
 	public EventFiringWebDriver getEventFiringWebDriver(ExtentTest test) {
+		
 		edriver = new EventFiringWebDriver(driver);
 		handler = new EventHandlers(test);
 		edriver.register(handler);
