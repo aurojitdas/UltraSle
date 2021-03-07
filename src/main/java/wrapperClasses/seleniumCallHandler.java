@@ -1,12 +1,16 @@
 package wrapperClasses;
 
+import static wrapperClasses.webdriverWaits.waitForElementToBeClickable;
+import static wrapperClasses.webdriverWaits.waitForElementToDisplay;
+
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
-import services.InitTests;
+import services.InitDriver;
 
-public class seleniumCallHandler extends InitTests{
+public class seleniumCallHandler extends InitDriver{
 	
 	public static void click(WebElement element) {
 		
@@ -22,7 +26,7 @@ public class seleniumCallHandler extends InitTests{
 		
 	}
 	
-	public static void sendKeys(WebElement element,String text) {
+	public static void setText(WebElement element,String text) {
 		
 		try {
 			waitForElementToDisplay(element);
@@ -77,14 +81,23 @@ public class seleniumCallHandler extends InitTests{
 		
 	}
 	
-	
-	public static void waitForElementToDisplay(WebElement element) {
-		wait.until(ExpectedConditions.visibilityOf(element));
+	public static void  scrollToElement(WebElement element,WebDriver driver) {
+		Actions action =  new Actions(driver);
+		action.moveToElement(element);
+		action.perform();
+		
+		
 	}
 	
-	public static void waitForElementToBeClickable(WebElement element) {
-		wait.until(ExpectedConditions.elementToBeClickable(element));
+	public static void hoverAndClick(WebElement parent,WebElement child,WebDriver driver) {
+		Actions action =  new Actions(driver);
+		action.moveToElement(parent);
+		action.perform();
+		click(child);
 	}
 	
-
+	
+	
+	
+	
 }

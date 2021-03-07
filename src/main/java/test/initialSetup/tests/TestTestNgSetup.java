@@ -4,14 +4,15 @@ import static wrapperClasses.seleniumCallHandler.*;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 
-import services.InitTests;
+import services.InitDriver;
 
-public class TestTestNgSetup extends InitTests {
+public class TestTestNgSetup extends InitDriver {
 	
 	WebDriver driver;
 	ExtentTest test;
@@ -25,10 +26,11 @@ public class TestTestNgSetup extends InitTests {
 			test = reports.createTest("Testing 001");
 			test.assignCategory("Test Category");
 			driver = getEventFiringWebDriver(test);
-			
-			driver.get("https:\\google.com");
-			
-			
+			getUserdata("google");
+			WebElement text = driver.findElement(By.name("q"));
+			setText(text, USERNAME);
+			setText(text, PASSWORD);
+			driver.findElement(By.xpath("//a[contains(text(),'About')]"));
 			click(driver.findElement(By.xpath("//a[contains(text(),'About')]")));
 			if(driver.getTitle().contains("Google")) {
 				

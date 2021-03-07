@@ -7,9 +7,9 @@ import org.testng.annotations.Test;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 
-import services.InitTests;
+import services.InitDriver;
 
-public class testParrallel extends InitTests {
+public class testParrallel extends InitDriver {
 	
 	WebDriver driver;
 	ExtentTest test;
